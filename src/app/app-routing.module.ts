@@ -1,10 +1,28 @@
+import { DictionaryPageComponent } from './dictionary-page/dictionary-page.component';
+import { YoutubePlaylistComponent } from './youtube-playlist/youtube-playlist.component';
+import { TimelinesComponent } from './timelines/timelines.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { YoutubePlayerComponent } from './youtube-player/youtube-player.component';
+import { DictionaryDetailComponent } from './dictionary-detail/dictionary-detail.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path:'timelines', component: TimelinesComponent},
+  {path:'youtube', component: YoutubePlaylistComponent,
+  children: [{
+    path:':id', component: YoutubePlayerComponent
+  }]},
+  {path:'dictionary', component:DictionaryPageComponent,
+  children: [{
+    path: ':id', component:DictionaryDetailComponent
+  }]}
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, 
+    {
+      preloadingStrategy: PreloadAllModules
+    })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

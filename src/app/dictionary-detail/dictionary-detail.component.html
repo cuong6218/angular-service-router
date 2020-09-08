@@ -1,0 +1,7 @@
+<div *ngIf="dict; else tmpl"></div>
+<p>Từ tiếng anh: {{dict.english}}</p>
+<p>Từ tiếng việt: {{dict.vietnam}}</p>
+<p>Nghĩa: {{dict.desc}}</p>
+<ng-template #tmpl>
+Not thing here
+</ng-template>
